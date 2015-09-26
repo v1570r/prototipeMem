@@ -13,9 +13,9 @@ class Game:
         self.width = width
         self.height = height
         self.running = True
+        self.event = SDL_Event()
 
     def init(self):
-        self.rota = 0
         SDL_Init(SDL_INIT_EVERYTHING)
 
         self.window = SDL_CreateWindow(b"p",
@@ -36,6 +36,7 @@ class Game:
 
         GL.glClearColor(0.5, 0.47, 0.78, 1)
 
+        self.rota = 0
 
 
 
@@ -65,8 +66,6 @@ class Game:
 
 
     def eventHandle(self):
-        self.event = SDL_Event()
-
         while SDL_PollEvent(ctypes.byref(self.event)) != 0:
             if self.event.type == SDL_QUIT:
                 self.running = False
