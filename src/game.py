@@ -42,13 +42,9 @@ class Game:
 
 
     def render(self):
-        #prueba inicial, dibuja el triangulo
         GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
-
-        GL.glPushMatrix()
         self.pointer.render()
-        GL.glPopMatrix()
 
         SDL_GL_SwapWindow(self.window)
         SDL_Delay(10)
