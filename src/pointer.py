@@ -13,6 +13,12 @@ class Pointer:
 	def __init__(self):
 		self.pos = Vect2d(0, 0)
 
+	def mousePos(self):
+		mouseX = (c_int)()
+		mouseY = (c_int)()
+		SDL_GetMouseState(mouseX, mouseY)
+		return Vect2d(mouseX.value, mouseY.value)
+
 
 	def render(self):
 		lineAmount = 100
@@ -29,10 +35,4 @@ class Pointer:
 
 
 	def update(self):
-		mouseX = (c_int)()
-		mouseY = (c_int)()
-		SDL_GetMouseState(mouseX, mouseY)
-		mousePos = Vect2d(mouseX.value, mouseY.value)
-		self.pos.set(mousePos)
-
-		print(self.pos.x , "  ", self.pos.y)
+		self.pos.set(self.mousePos())

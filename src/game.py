@@ -6,6 +6,7 @@ from OpenGL import GL, GLU
 from sdl2 import *
 
 from pointer import Pointer
+from mob_generator import MobGenerator
 
 class Game:
 
@@ -15,6 +16,7 @@ class Game:
         self.running = True
         self.event = SDL_Event()
         self.pointer = Pointer()
+        self.mobs = MobGenerator()
 
     def init(self):
         SDL_Init(SDL_INIT_EVERYTHING)
@@ -37,7 +39,7 @@ class Game:
 
         GL.glClearColor(0.5, 0.47, 0.78, 1)
 
-        self.rota = 0
+        self.mobs.generate()
 
 
 
@@ -45,12 +47,14 @@ class Game:
         GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
         self.pointer.render()
+        self.mobs.render()
 
         SDL_GL_SwapWindow(self.window)
         SDL_Delay(10)
 
     def update(self):
         self.pointer.update()
+        self.mobs.update()
 
 
     def eventHandle(self):
