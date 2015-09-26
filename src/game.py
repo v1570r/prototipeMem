@@ -15,13 +15,14 @@ class Game:
         self.running = True
 
     def init(self):
+        self.rota = 0
         SDL_Init(SDL_INIT_EVERYTHING)
 
         self.window = SDL_CreateWindow(b"p",
                                     SDL_WINDOWPOS_CENTERED,
                                     SDL_WINDOWPOS_CENTERED,
                                     self.width, self.height,
-                                    SDL_WINDOW_OPENGL | SDL_WINDOW_BORDERLESS)    
+                                    SDL_WINDOW_OPENGL)    
 
         self.selfcontext = SDL_GL_CreateContext(self.window)
 
@@ -40,14 +41,15 @@ class Game:
 
     def render(self):
         #prueba inicial, dibuja el triangulo
+        GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
         x = self.width/2
         y = self.height/2
+        
 
         GL.glPushMatrix()
-        GL.glClear(GL.GL_COLOR_BUFFER_BIT)
         GL.glTranslatef(x, y, 0.0)
-        #GL.glRotatef(10.0, 0.0, 0.0, 1.0)
+        GL.glRotatef(self.rota, 0.0, 0.0, 1.0)
         GL.glBegin(GL.GL_TRIANGLES)
         GL.glColor3f(1.0, 0.0, 0.0)
         GL.glVertex2f(0.0, 90.0)
@@ -58,6 +60,7 @@ class Game:
         GL.glEnd()
         GL.glPopMatrix()
 
+        self.rota += 0.05
         SDL_GL_SwapWindow(self.window)
 
 
