@@ -6,13 +6,14 @@ from game import Game
 
 
 def run():
-    g = Game(480, 480)
+    g = Game(800, 600)
 
     g.init()
 
     while g.running:
         g.eventHandle()
         g.render()
+        g.update()
 
     g.quit()
     return 0
