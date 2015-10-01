@@ -1,3 +1,7 @@
+"""
+	Pointer class uses for iteraction with mouse and
+	it execute the actions when click the button
+"""
 
 import ctypes
 from math import cos, sin, pi
@@ -12,14 +16,14 @@ class Pointer:
 
 	def __init__(self):
 		self.pos = Vect2d(0, 0)
-
+##This function renew the position of mouse
 	def mousePos(self):
 		mouseX = (c_int)()
 		mouseY = (c_int)()
 		SDL_GetMouseState(mouseX, mouseY)
 		return Vect2d(mouseX.value, mouseY.value)
 
-
+##
 	def render(self):
 		lineAmount = 100
 		radius = 50.0
